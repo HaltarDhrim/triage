@@ -1,5 +1,7 @@
 package it.haltardhrim.triage;
 
+import java.util.*;
+
 /**
  * Questa classe fa parte del pattern DAO.
  * Risponde alla domanda: come lancio i comandi del DAO come utente?
@@ -15,6 +17,10 @@ public class PazienteService {
 	
 	public void accogliPaziente(Paziente paz) {
 		pazDAO.createPaziente(paz);
+	}
+	
+	public ArrayList<Paziente> mostraCodaPazienti() {
+		return pazDAO.readPazientiInCoda();
 	}
 	
 	public void visitaPaziente(Paziente paz) {
@@ -35,5 +41,13 @@ public class PazienteService {
 	public void dimettiPaziente(Paziente paz) {
 		paz.setStato(paz.EVASO);
 		pazDAO.updatePazienteStato(paz);
+	}
+	
+	public void aggravaPaziente(Paziente paz) {
+		pazDAO.updatePazientePriorita(paz);
+	}
+	
+	public void eliminaPaziente(Paziente paz) {
+		pazDAO.deletePaziente(paz);
 	}
 }

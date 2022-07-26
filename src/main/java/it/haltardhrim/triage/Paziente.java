@@ -1,5 +1,7 @@
 package it.haltardhrim.triage;
 
+import java.sql.Timestamp;
+
 /**
  * Questa classe fa parte del pattern DAO.
  * Risponde alla domanda: com'è fatto un Paziente nel DB?
@@ -18,15 +20,15 @@ public class Paziente {
 	public final int IN_OSSERVAZIONE = 4;
 	public final int EVASO           = 5;
 
-	private Integer id;
-	private String  codfisc;
-	private Integer prioritaIniz; //1=Rosso, 2=Giallo, 3=Verde, 4=Bianco
-	private Integer priorita;     //1=Rosso, 2=Giallo, 3=Verde, 4=Bianco
-	private Integer stato;        //1=Da visitare, 2=In visita, 3=In intervento, 4=In osservazione, 5=Evaso
-	private String  userInsert;
-	private String  timeInsert;
-	private String  userUpdate;
-	private String  timeUpdate;
+	private Integer   id;
+	private String    codfisc;
+	private Integer   prioritaIniz; //1=Rosso, 2=Giallo, 3=Verde, 4=Bianco
+	private Integer   priorita;     //1=Rosso, 2=Giallo, 3=Verde, 4=Bianco
+	private Integer   stato;        //1=Da visitare, 2=In visita, 3=In intervento, 4=In osservazione, 5=Evaso
+	private String    userInsert;
+	private Timestamp timeInsert;
+	private String    userUpdate;
+	private Timestamp timeUpdate;
 
 	public Integer getId() {
 		return id;
@@ -64,10 +66,10 @@ public class Paziente {
 	public void setUserInsert(String userInsert) {
 		this.userInsert = userInsert;
 	}
-	public String getTimeInsert() {
+	public Timestamp getTimeInsert() {
 		return timeInsert;
 	}
-	public void setTimeInsert(String timeInsert) {
+	public void setTimeInsert(Timestamp timeInsert) {
 		this.timeInsert = timeInsert;
 	}
 	public String getUserUpdate() {
@@ -76,10 +78,10 @@ public class Paziente {
 	public void setUserUpdate(String userUpdate) {
 		this.userUpdate = userUpdate;
 	}
-	public String getTimeUpdate() {
+	public Timestamp getTimeUpdate() {
 		return timeUpdate;
 	}
-	public void setTimeUpdate(String timeUpdate) {
+	public void setTimeUpdate(Timestamp timeUpdate) {
 		this.timeUpdate = timeUpdate;
 	}
 }

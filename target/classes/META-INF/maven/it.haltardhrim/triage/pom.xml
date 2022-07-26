@@ -6,8 +6,8 @@
 
   <groupId>it.haltardhrim</groupId>
   <artifactId>triage</artifactId>
-  <!-- v0.2: Aggiunto pattern DAO per Paziente -->
-  <version>0.2</version>
+  <!-- v0.2.1: Implementati e testati tutti i metodi di PazienteDAO -->
+  <version>0.2.1</version>
 
   <name>triage</name>
   <!-- FIXME change it to the project's website -->
