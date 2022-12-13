@@ -23,7 +23,9 @@ public class PazienteDAO {
 	private final String UPDATE_PAZIENTE_PRIORITA =
 		"UPDATE pazienti SET priorita = ?, userUpdate = ?, timeUpdate = ? WHERE id = ?";
 	private final String DELETE_PAZIENTE =
-		"DELETE FROM pazienti WHERE id = ?";
+			"DELETE FROM pazienti WHERE id = ?";
+	private final String DELETE_ALL_PAZIENTI =
+			"DELETE FROM pazienti";
 
 	public Connection getConnection() {
 		Connection conn = null;
@@ -135,6 +137,19 @@ public class PazienteDAO {
 			conn.close();
 		} catch (SQLException e) {
 			System.err.println("Errore in fase di esecuzione DELETE deletePaziente");
+			e.printStackTrace();
+		}
+	}
+
+	public void deleteAllPazienti() {
+		try {
+			conn = this.getConnection();
+			query = conn.prepareStatement(DELETE_ALL_PAZIENTI);
+			query.executeUpdate();
+			query.close();
+			conn.close();
+		} catch (SQLException e) {
+			System.err.println("Errore in fase di esecuzione DELETE deleteAllPazienti");
 			e.printStackTrace();
 		}
 	}

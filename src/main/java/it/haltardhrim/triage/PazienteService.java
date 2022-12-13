@@ -50,4 +50,8 @@ public class PazienteService {
 	public void eliminaPaziente(Paziente paz) {
 		pazDAO.deletePaziente(paz);
 	}
+
+	public void resetPazienti() {
+		pazDAO.deleteAllPazienti();
+	}
 }

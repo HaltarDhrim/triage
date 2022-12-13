@@ -4,14 +4,17 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
+  <!-- Storico versioni:
+       v0.1:   Prima versione scritta in autonomia, senza design patter DAO.
+               Implementata solo la Insert, ma la query non funziona, devo vedere il comando corretto.
+       v0.2:   Aggiunto pattern DAO per Paziente.
+       v0.2.1: Implementati e testati tutti i metodi di PazienteDAO.
+       v0.3:   Aggiunto Flyway per gestire la creazione del DB. Riscritto il progetto in stile TDD con JUnit.
+  -->
   <groupId>it.haltardhrim</groupId>
   <artifactId>triage</artifactId>
-  <!-- v0.2.1: Implementati e testati tutti i metodi di PazienteDAO -->
-  <version>0.2.1</version>
-
+  <version>0.3</version>
   <name>triage</name>
-  <!-- FIXME change it to the project's website -->
-  <url>http://www.example.com</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -19,19 +22,26 @@
     <maven.compiler.target>17</maven.compiler.target>
   </properties>
 
-	<dependencies>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.11</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<version>42.2.9</version>
-		</dependency>
-	</dependencies>
+  <dependencies>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <version>5.9.1</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+      <version>42.2.9</version>
+    </dependency>
+    <!---
+    <dependency>
+      <groupId>org.flywaydb.enterprise</groupId>
+      <artifactId>flyway-core</artifactId>
+      <version>9.0.0</version>
+    </dependency>
+    -->
+  </dependencies>
 
   <build>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
@@ -52,7 +62,11 @@
         </plugin>
         <plugin>
           <artifactId>maven-surefire-plugin</artifactId>
-          <version>2.22.1</version>
+          <version>3.0.0-M7</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-failsafe-plugin</artifactId>
+          <version>3.0.0-M7</version>
         </plugin>
         <plugin>
           <artifactId>maven-jar-plugin</artifactId>
@@ -74,6 +88,23 @@
         <plugin>
           <artifactId>maven-project-info-reports-plugin</artifactId>
           <version>3.0.0</version>
+        </plugin>
+        <plugin>
+          <groupId>org.flywaydb</groupId>
+          <artifactId>flyway-maven-plugin</artifactId>
+          <version>9.8.3</version>
+          <configuration>
+            <url>jdbc:postgresql://localhost:5432/triage</url>
+            <user>postgres</user>
+            <password>postgres</password>
+          </configuration>
+          <dependencies>
+            <dependency>
+              <groupId>org.postgresql</groupId>
+              <artifactId>postgresql</artifactId>
+              <version>42.2.14</version>
+            </dependency>
+          </dependencies>
         </plugin>
       </plugins>
     </pluginManagement>
