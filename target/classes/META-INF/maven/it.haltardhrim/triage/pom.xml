@@ -10,10 +10,11 @@
        v0.2:   Aggiunto pattern DAO per Paziente.
        v0.2.1: Implementati e testati tutti i metodi di PazienteDAO.
        v0.3:   Aggiunto Flyway per gestire la creazione del DB. Riscritto il progetto in stile TDD con JUnit.
+       v0.3.1: Aggiunte Assert per non dover più guardare il DB dopo i test.
   -->
   <groupId>it.haltardhrim</groupId>
   <artifactId>triage</artifactId>
-  <version>0.3</version>
+  <version>0.3.1</version>
   <name>triage</name>
 
   <properties>
