@@ -1,8 +1,11 @@
-package it.haltardhrim.triage;
+package it.haltardhrim.triage.test;
 
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
 import org.junit.jupiter.api.*;
+
+import it.haltardhrim.triage.model.Paziente;
+import it.haltardhrim.triage.model.PazienteService;
 
 @TestMethodOrder(MethodOrderer.MethodName.class)
 public class AppTest {

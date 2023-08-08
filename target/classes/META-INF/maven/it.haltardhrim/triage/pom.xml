@@ -9,12 +9,16 @@
                Implementata solo la Insert, ma la query non funziona, devo vedere il comando corretto.
        v0.2:   Aggiunto pattern DAO per Paziente.
        v0.2.1: Implementati e testati tutti i metodi di PazienteDAO.
-       v0.3:   Aggiunto Flyway per gestire la creazione del DB. Riscritto il progetto in stile TDD con JUnit.
+       v0.3:   Aggiunto Flyway per gestire la creazione del DB.
+               Riscritto il progetto in stile TDD (Test-Driven Development) con JUnit.
        v0.3.1: Aggiunte Assert per non dover più guardare il DB dopo i test.
+       v0.4:   Aggiunta struttura MVC (Model-Control-View).
+               Aggiunta finestra base che mostra la situazione attuale del DB.
   -->
+
   <groupId>it.haltardhrim</groupId>
   <artifactId>triage</artifactId>
-  <version>0.3.1</version>
+  <version>0.4</version>
   <name>triage</name>
 
   <properties>

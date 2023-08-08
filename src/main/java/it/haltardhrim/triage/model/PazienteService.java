@@ -1,4 +1,4 @@
-package it.haltardhrim.triage;
+package it.haltardhrim.triage.model;
 
 import java.util.*;
 
