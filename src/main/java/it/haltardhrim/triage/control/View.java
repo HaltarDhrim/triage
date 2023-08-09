@@ -1,15 +1,15 @@
 package it.haltardhrim.triage.control;
 
-import it.haltardhrim.triage.view.Screen1;
+import it.haltardhrim.triage.view.MainScreen;
 
 public class View {
 
-	Model model;
-	Screen1 screen1;
+	Control control;
+	MainScreen screen1;
 
-	public View(Model model) {
-		this.model = model;
-		screen1 = new Screen1(model.pazServ);
+	public View(Control control) {
+		this.control = control;
+		screen1 = new MainScreen(control);
 	}
 
 }

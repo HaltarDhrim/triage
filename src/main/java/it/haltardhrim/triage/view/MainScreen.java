@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -12,25 +11,24 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-import it.haltardhrim.triage.model.Paziente;
-import it.haltardhrim.triage.model.PazienteService;
+import it.haltardhrim.triage.control.Control;
 
-public class Screen1 extends JFrame {
+public class MainScreen extends JFrame {
 
 	// Componenti View-Panel
 	JScrollPane panelCenter;
 	JPanel panelSouth;
 
 	// Componenti View-Component
-	JTable listaPazienti;
-	JButton mostraPazienti;
+	JTable lista;
+	JButton mostra;
 
-	// Componenti Model
-	PazienteService pazServ;
+	// Componenti Control
+	Control control;
 
-	public Screen1(PazienteService pazServ) throws HeadlessException {
+	public MainScreen(Control control) throws HeadlessException {
 		super("Triage");
-		this.pazServ = pazServ;
+		this.control = control;
 		init();
 		define();
 		build();
@@ -45,24 +43,24 @@ public class Screen1 extends JFrame {
 	}
 
 	public void define() {
-		listaPazienti = new JTable(new PazientiTable());
-		listaPazienti.setFillsViewportHeight(true);
+		lista = new JTable(new PazientiTable());
+		lista.setFillsViewportHeight(true);
 
-		mostraPazienti = new JButton("Aggiorna Pazienti");
-		mostraPazienti.addActionListener(new ActionListener() {
+		mostra = new JButton("Aggiorna");
+		mostra.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ArrayList<Paziente> pazList = pazServ.mostraCodaPazienti();
-				PazientiTable t = (PazientiTable) listaPazienti.getModel();
-				t.reset(pazList);
+				System.out.println("Aggiorna");
+				PazientiTable t = (PazientiTable) lista.getModel();
+				control.aggiornaClicked(t);
 			}
 		});
 	}
 
 	public void build() {
-		panelCenter = new JScrollPane(listaPazienti);
+		panelCenter = new JScrollPane(lista);
 
 		panelSouth = new JPanel();
-		panelSouth.add(mostraPazienti);
+		panelSouth.add(mostra);
 
 		add(panelCenter, BorderLayout.CENTER);
 		add(panelSouth, BorderLayout.SOUTH);

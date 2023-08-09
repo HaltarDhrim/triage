@@ -17,7 +17,7 @@ public class PazienteDAO {
 		"INSERT INTO pazienti (id,codfisc,prioritaIniz,priorita,stato,userInsert,timeInsert,userUpdate,timeUpdate)" +
 		"VALUES (default,?,?,?,?,?,?,?,?)";
 	private final String READ_PAZIENTI_IN_CODA =
-		"SELECT * FROM pazienti WHERE stato <> 5 ORDER BY priorita,timeInsert";
+		"SELECT * FROM pazienti WHERE stato <> 4 ORDER BY priorita,timeInsert";
 	private final String UPDATE_PAZIENTE_STATO =
 		"UPDATE pazienti SET stato = ?, userUpdate = ?, timeUpdate = ? WHERE id = ?";
 	private final String UPDATE_PAZIENTE_PRIORITA =

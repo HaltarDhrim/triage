@@ -29,13 +29,15 @@ public class PazientiTable extends AbstractTableModel {
 	@Override
 	public Object getValueAt(int r, int c) {
 		// TODO Auto-generated method stub
+		Paziente p = pazienti.get(r);
+
 		switch (c) {
 		case CODFISC:
-			return pazienti.get(r).getCodfisc();
+			return p.getCodfisc();
 		case PRIORITA:
-			return pazienti.get(r).getPriorita();
+			return p.prioritaEnum[p.getPriorita()];
 		case STATO:
-			return pazienti.get(r).getStato();
+			return p.statoEnum[p.getStato()];
 		default:
 			return null;
 		}
