@@ -1,8 +1,6 @@
 package it.haltardhrim.triage.control;
 
-import java.util.ArrayList;
-
-import it.haltardhrim.triage.model.Paziente;
+import it.haltardhrim.triage.view.MainScreen;
 import it.haltardhrim.triage.view.PazientiTable;
 
 public class Control implements ControlListener {
@@ -17,7 +15,17 @@ public class Control implements ControlListener {
 
 	@Override
 	public void aggiornaClicked(PazientiTable tableModel) {
-		ArrayList<Paziente> t = model.getPazienteService().mostraCodaPazienti();
-		tableModel.reset(t);
+		tableModel.reset(model.getCodaPazienti());
+	}
+
+	@Override
+	public void accogliClicked() {
+		view.accogliPaziente();
+	}
+
+	@Override
+	public void accogliOkClicked(String codfisc, int priorita, MainScreen mainScreen) {
+		model.accogliPaziente(codfisc, priorita);
+		mainScreen.fireAggiorna();
 	}
 }

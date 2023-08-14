@@ -6,6 +6,7 @@ import javax.swing.table.AbstractTableModel;
 
 import it.haltardhrim.triage.model.Paziente;
 
+@SuppressWarnings("serial")
 public class PazientiTable extends AbstractTableModel {
 
 	private String[] colonne = { "Cod.Fisc.", "Priorità", "Stato" };
@@ -16,19 +17,16 @@ public class PazientiTable extends AbstractTableModel {
 
 	@Override
 	public int getRowCount() {
-		// TODO Auto-generated method stub
 		return pazienti.size();
 	}
 
 	@Override
 	public int getColumnCount() {
-		// TODO Auto-generated method stub
 		return colonne.length;
 	}
 
 	@Override
 	public Object getValueAt(int r, int c) {
-		// TODO Auto-generated method stub
 		Paziente p = pazienti.get(r);
 
 		switch (c) {

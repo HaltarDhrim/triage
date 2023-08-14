@@ -32,6 +32,15 @@ public class Paziente {
 	private String userUpdate;
 	private Timestamp timeUpdate;
 
+	public Paziente() {
+	}
+
+	public Paziente(String codfisc, int priorita) {
+		setCodfisc(codfisc);
+		setPrioritaIniz(priorita);
+		setPriorita(priorita);
+	}
+
 	public Integer getId() {
 		return id;
 	}

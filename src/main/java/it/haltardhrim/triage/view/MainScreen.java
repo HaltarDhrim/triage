@@ -13,18 +13,20 @@ import javax.swing.JTable;
 
 import it.haltardhrim.triage.control.Control;
 
+@SuppressWarnings("serial")
 public class MainScreen extends JFrame {
-
-	// Componenti View-Panel
-	JScrollPane panelCenter;
-	JPanel panelSouth;
-
-	// Componenti View-Component
-	JTable lista;
-	JButton mostra;
 
 	// Componenti Control
 	Control control;
+
+	// Componenti Panel
+	JScrollPane panelCenter;
+	JPanel panelSouth;
+
+	// Componenti Component
+	JTable lista;
+	JButton mostra;
+	JButton accogli;
 
 	public MainScreen(Control control) throws HeadlessException {
 		super("Triage");
@@ -39,7 +41,6 @@ public class MainScreen extends JFrame {
 		setSize(400, 300);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setVisible(true);
 	}
 
 	public void define() {
@@ -49,9 +50,14 @@ public class MainScreen extends JFrame {
 		mostra = new JButton("Aggiorna");
 		mostra.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("Aggiorna");
-				PazientiTable t = (PazientiTable) lista.getModel();
-				control.aggiornaClicked(t);
+				fireAggiorna();
+			}
+		});
+
+		accogli = new JButton("Accogli");
+		accogli.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				control.accogliClicked();
 			}
 		});
 	}
@@ -61,8 +67,16 @@ public class MainScreen extends JFrame {
 
 		panelSouth = new JPanel();
 		panelSouth.add(mostra);
+		panelSouth.add(accogli);
 
 		add(panelCenter, BorderLayout.CENTER);
 		add(panelSouth, BorderLayout.SOUTH);
+
+		fireAggiorna();
+	}
+
+	public void fireAggiorna() {
+		PazientiTable t = (PazientiTable) lista.getModel();
+		control.aggiornaClicked(t);
 	}
 }

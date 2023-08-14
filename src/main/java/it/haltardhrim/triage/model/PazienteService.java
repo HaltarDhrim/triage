@@ -19,7 +19,7 @@ public class PazienteService {
 		pazDAO.createPaziente(paz);
 	}
 	
-	public ArrayList<Paziente> mostraCodaPazienti() {
+	public ArrayList<Paziente> getCodaPazienti() {
 		return pazDAO.readPazientiInCoda();
 	}
 	

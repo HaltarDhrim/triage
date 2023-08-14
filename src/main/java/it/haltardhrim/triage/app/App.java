@@ -15,6 +15,7 @@ public class App {
 		});
 	}
 
+	@SuppressWarnings("unused")
 	public static void runApp() {
 		Control control = new Control();
 	}

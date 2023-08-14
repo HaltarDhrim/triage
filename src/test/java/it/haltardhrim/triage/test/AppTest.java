@@ -22,7 +22,7 @@ public class AppTest {
 		pazServ.resetPazienti();
 
 		//Verifica: la tabella è vuota
-		pazList = pazServ.mostraCodaPazienti();
+		pazList = pazServ.getCodaPazienti();
 		assertEquals(0,pazList.size(),"BeforeAll: tabella Pazienti non vuota");
 	}
 
@@ -42,7 +42,7 @@ public class AppTest {
 		pazServ.accogliPaziente(paz);
 
 		//Verifica: la tabella contiene i record inseriti
-		pazList = pazServ.mostraCodaPazienti();
+		pazList = pazServ.getCodaPazienti();
 
 		for (Paziente p: pazList) {
 			switch (p.getCodfisc().trim()) {
@@ -71,7 +71,7 @@ public class AppTest {
 	@Test
 	// Test 2: Aggiorna Stato Paziente
 	void test2UpdatePazienteStato() {
-		pazList = pazServ.mostraCodaPazienti();
+		pazList = pazServ.getCodaPazienti();
 		for (Paziente p: pazList) {
 			if (p.getCodfisc().trim().equals("Paperino")) {
 				pazServ.operaPaziente(p);
@@ -79,7 +79,7 @@ public class AppTest {
 		}
 
 		// Verifica: lo stato di Paperino è cambiato
-		pazList = pazServ.mostraCodaPazienti();
+		pazList = pazServ.getCodaPazienti();
 
 		for (Paziente p: pazList) {
 			if (p.getCodfisc().trim().equals("Paperino")) {
@@ -91,7 +91,7 @@ public class AppTest {
 	@Test
 	// Test 3: Aggiorna Priorita Paziente
 	void test3UpdatePazientePriorita() {
-		pazList = pazServ.mostraCodaPazienti();
+		pazList = pazServ.getCodaPazienti();
 		for (Paziente p: pazList) {
 			if (p.getCodfisc().trim().equals("Pippo")) {
 				p.setPriorita(p.VERDE);
@@ -100,7 +100,7 @@ public class AppTest {
 		}
 
 		// Verifica: la priorità di Pippo è cambiata
-		pazList = pazServ.mostraCodaPazienti();
+		pazList = pazServ.getCodaPazienti();
 
 		for (Paziente p: pazList) {
 			if (p.getCodfisc().trim().equals("Pippo")) {
@@ -112,7 +112,7 @@ public class AppTest {
 	@Test
     // Test 4: Elimina Paziente (che è diverso da segnarlo come Evaso! Viene cancellato del tutto)
 	void test4DeletePaziente() {
-		pazList = pazServ.mostraCodaPazienti();
+		pazList = pazServ.getCodaPazienti();
 		for (Paziente p: pazList) {
 			if (p.getCodfisc().trim().equals("Pluto")) {
 				pazServ.eliminaPaziente(p);
@@ -120,7 +120,7 @@ public class AppTest {
 		}
 
 		//Verifica: la tabella non contiene piu' Pluto
-		pazList = pazServ.mostraCodaPazienti();
+		pazList = pazServ.getCodaPazienti();
 
 		for (Paziente p: pazList) {
 			if (p.getCodfisc().trim().equals("Pluto")) {
@@ -132,7 +132,7 @@ public class AppTest {
 	@AfterAll
 	// Mostra il risultato finale
 	static void afterAll() {
-		pazList = pazServ.mostraCodaPazienti();
+		pazList = pazServ.getCodaPazienti();
 		System.out.println("Lista Coda Pazienti");
 		System.out.println("ID   Priorita   Cod.Fisc.");
 		System.out.println("-------------------------");

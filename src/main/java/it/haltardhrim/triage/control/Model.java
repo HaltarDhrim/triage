@@ -1,5 +1,8 @@
 package it.haltardhrim.triage.control;
 
+import java.util.ArrayList;
+
+import it.haltardhrim.triage.model.Paziente;
 import it.haltardhrim.triage.model.PazienteService;
 
 public class Model {
@@ -12,7 +15,11 @@ public class Model {
 		pazServ = new PazienteService();
 	}
 
-	public PazienteService getPazienteService() {
-		return pazServ;
+	public ArrayList<Paziente> getCodaPazienti() {
+		return pazServ.getCodaPazienti();
+	}
+
+	public void accogliPaziente(String codfisc, int priorita) {
+		pazServ.accogliPaziente(new Paziente(codfisc, priorita));
 	}
 }
