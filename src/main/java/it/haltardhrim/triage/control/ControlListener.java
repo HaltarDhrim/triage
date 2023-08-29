@@ -9,4 +9,6 @@ public interface ControlListener {
 	public void accogliClicked();
 
 	public void accogliOkClicked(String codfisc, int priorita, MainScreen mainScreen);
+
+	public void dimettiClicked(int id);
 }

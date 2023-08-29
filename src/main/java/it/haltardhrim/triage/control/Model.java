@@ -22,4 +22,8 @@ public class Model {
 	public void accogliPaziente(String codfisc, int priorita) {
 		pazServ.accogliPaziente(new Paziente(codfisc, priorita));
 	}
+
+	public void dimettiPaziente(int id) {
+		pazServ.dimettiPaziente(id);
+	}
 }

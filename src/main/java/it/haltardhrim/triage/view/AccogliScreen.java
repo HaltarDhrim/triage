@@ -5,6 +5,8 @@ import java.awt.GridLayout;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -47,7 +49,20 @@ public class AccogliScreen extends JFrame {
 	public void init() {
 		setSize(300, 130);
 		setLocationRelativeTo(null);
-		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+		
+		addWindowListener(new WindowListener() {
+			public void windowOpened(WindowEvent e) {}
+			public void windowIconified(WindowEvent e) {}
+			public void windowDeiconified(WindowEvent e) {}
+			public void windowDeactivated(WindowEvent e) {}
+			public void windowClosed(WindowEvent e) {}
+			public void windowActivated(WindowEvent e) {}
+			public void windowClosing(WindowEvent e) {
+				mainScreen.setEnabled(true);
+				dispose();
+			}
+		});
 	}
 
 	public void define() {
@@ -59,8 +74,8 @@ public class AccogliScreen extends JFrame {
 		ok = new JButton("OK");
 		ok.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("OK");
 				control.accogliOkClicked(codfisc.getText(), priorita.getSelectedIndex(), mainScreen);
+				mainScreen.setEnabled(true);
 				dispose();
 			}
 		});
@@ -68,13 +83,13 @@ public class AccogliScreen extends JFrame {
 		annulla = new JButton("Annulla");
 		annulla.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				mainScreen.setEnabled(true);
 				dispose();
 			}
 		});
 	}
 
 	public void build() {
-		// panelCenter = aggiungi label e caselle di testo codfisc
 		panelCenter = new JPanel();
 		panelCenter.setLayout(new GridLayout(0, 2));
 		panelCenter.add(lblCodfisc);

@@ -28,4 +28,9 @@ public class Control implements ControlListener {
 		model.accogliPaziente(codfisc, priorita);
 		mainScreen.fireAggiorna();
 	}
+
+	@Override
+	public void dimettiClicked(int id) {
+		model.dimettiPaziente(id);
+	}
 }

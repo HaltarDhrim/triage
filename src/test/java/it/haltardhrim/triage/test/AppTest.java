@@ -30,15 +30,15 @@ public class AppTest {
 	// Test 1: Crea un nuovo Paziente e inseriscilo in tabella
 	void test1InsertPaziente() {
     	paz.setCodfisc("Pippo");
-		paz.setPrioritaIniz(paz.BIANCO);
+		paz.setPrioritaIniz(Paziente.BIANCO);
 		pazServ.accogliPaziente(paz);
          
 		paz.setCodfisc("Paperino");
-		paz.setPrioritaIniz(paz.GIALLO);
+		paz.setPrioritaIniz(Paziente.GIALLO);
 		pazServ.accogliPaziente(paz);
          
 		paz.setCodfisc("Pluto");
-		paz.setPrioritaIniz(paz.ROSSO);
+		paz.setPrioritaIniz(Paziente.ROSSO);
 		pazServ.accogliPaziente(paz);
 
 		//Verifica: la tabella contiene i record inseriti
@@ -49,17 +49,17 @@ public class AppTest {
 				case "Pippo":
 					assertAll("Verifica Pippo",
 							() -> assertEquals("Pippo",p.getCodfisc().trim(),"Test 1: Pippo.codfisc errato"),
-							() -> assertEquals(p.BIANCO,p.getPrioritaIniz(),"Test 1: Pippo.prioritaIniz errata"));
+							() -> assertEquals(Paziente.BIANCO,p.getPrioritaIniz(),"Test 1: Pippo.prioritaIniz errata"));
 					break;
 				case "Paperino":
 					assertAll("Verifica Paperino",
 							() -> assertEquals("Paperino",p.getCodfisc().trim(),"Test 1: Paperino.codfisc errato"),
-							() -> assertEquals(p.GIALLO,p.getPrioritaIniz(),"Test 1: Paperino.prioritaIniz errata"));
+							() -> assertEquals(Paziente.GIALLO,p.getPrioritaIniz(),"Test 1: Paperino.prioritaIniz errata"));
 					break;
 				case "Pluto":
 					assertAll("Verifica Pluto",
 							() -> assertEquals("Pluto",p.getCodfisc().trim(),"Test 1: Pluto.codfisc errato"),
-							() -> assertEquals(p.ROSSO,p.getPrioritaIniz(),"Test 1: Pluto.prioritaIniz errata"));
+							() -> assertEquals(Paziente.ROSSO,p.getPrioritaIniz(),"Test 1: Pluto.prioritaIniz errata"));
 					break;
 				default:
 					fail("Test 1: Paziente errato: " + p.getCodfisc());
@@ -74,7 +74,7 @@ public class AppTest {
 		pazList = pazServ.getCodaPazienti();
 		for (Paziente p: pazList) {
 			if (p.getCodfisc().trim().equals("Paperino")) {
-				pazServ.operaPaziente(p);
+				pazServ.operaPaziente(p.getId());
 			}
 		}
 
@@ -83,7 +83,7 @@ public class AppTest {
 
 		for (Paziente p: pazList) {
 			if (p.getCodfisc().trim().equals("Paperino")) {
-				assertEquals(p.IN_INTERVENTO,p.getStato(),"Test 2: Paperino.stato errato");
+				assertEquals(Paziente.IN_INTERVENTO,p.getStato(),"Test 2: Paperino.stato errato");
 			}
 		}
 	}
@@ -94,7 +94,7 @@ public class AppTest {
 		pazList = pazServ.getCodaPazienti();
 		for (Paziente p: pazList) {
 			if (p.getCodfisc().trim().equals("Pippo")) {
-				p.setPriorita(p.VERDE);
+				p.setPriorita(Paziente.VERDE);
 				pazServ.aggravaPaziente(p);
 			}
 		}
@@ -104,7 +104,7 @@ public class AppTest {
 
 		for (Paziente p: pazList) {
 			if (p.getCodfisc().trim().equals("Pippo")) {
-				assertEquals(p.VERDE,p.getPriorita(),"Test 3: Pippo.priorita errata");
+				assertEquals(Paziente.VERDE,p.getPriorita(),"Test 3: Pippo.priorita errata");
 			}
 		}
 	}

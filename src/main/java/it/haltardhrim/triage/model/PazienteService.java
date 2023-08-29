@@ -23,24 +23,20 @@ public class PazienteService {
 		return pazDAO.readPazientiInCoda();
 	}
 	
-	public void visitaPaziente(Paziente paz) {
-		paz.setStato(paz.IN_VISITA);
-		pazDAO.updatePazienteStato(paz);
+	public void visitaPaziente(int id) {
+		pazDAO.updatePazienteStato(Paziente.IN_VISITA, id);
 	}
 	
-	public void operaPaziente(Paziente paz) {
-		paz.setStato(paz.IN_INTERVENTO);
-		pazDAO.updatePazienteStato(paz);
+	public void operaPaziente(int id) {
+		pazDAO.updatePazienteStato(Paziente.IN_INTERVENTO, id);
 	}
 	
-	public void osservaPaziente(Paziente paz) {
-		paz.setStato(paz.IN_OSSERVAZIONE);
-		pazDAO.updatePazienteStato(paz);
+	public void osservaPaziente(int id) {
+		pazDAO.updatePazienteStato(Paziente.IN_OSSERVAZIONE, id);
 	}
 	
-	public void dimettiPaziente(Paziente paz) {
-		paz.setStato(paz.EVASO);
-		pazDAO.updatePazienteStato(paz);
+	public void dimettiPaziente(int id) {
+		pazDAO.updatePazienteStato(Paziente.EVASO, id);
 	}
 	
 	public void aggravaPaziente(Paziente paz) {

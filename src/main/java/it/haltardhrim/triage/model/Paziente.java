@@ -10,17 +10,17 @@ import java.sql.Timestamp;
 public class Paziente {
 
 	public final String[] prioritaEnum = { "Rosso", "Giallo", "Verde", "Bianco" };
-	public final int ROSSO = 0;
-	public final int GIALLO = 1;
-	public final int VERDE = 2;
-	public final int BIANCO = 3;
+	public static final int ROSSO = 0;
+	public static final int GIALLO = 1;
+	public static final int VERDE = 2;
+	public static final int BIANCO = 3;
 
 	public final String[] statoEnum = { "Da Visitare", "In Visita", "In Intervento", "In Osservazione", "Evaso" };
-	public final int DA_VISITARE = 0;
-	public final int IN_VISITA = 1;
-	public final int IN_INTERVENTO = 2;
-	public final int IN_OSSERVAZIONE = 3;
-	public final int EVASO = 4;
+	public static final int DA_VISITARE = 0;
+	public static final int IN_VISITA = 1;
+	public static final int IN_INTERVENTO = 2;
+	public static final int IN_OSSERVAZIONE = 3;
+	public static final int EVASO = 4;
 
 	private Integer id;
 	private String codfisc;

@@ -6,16 +6,16 @@ import it.haltardhrim.triage.view.MainScreen;
 public class View {
 
 	Control control;
-	MainScreen screen1;
-	AccogliScreen screen2;
+	MainScreen mainScreen;
+	AccogliScreen accogliScreen;
 
 	public View(Control control) {
 		this.control = control;
-		screen1 = new MainScreen(control);
+		mainScreen = new MainScreen(control);
 	}
 
 	public void accogliPaziente() {
-		screen2 = new AccogliScreen(control, screen1);
+		accogliScreen = new AccogliScreen(control, mainScreen);
 	}
 
 }

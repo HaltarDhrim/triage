@@ -16,12 +16,13 @@
                Aggiunta finestra base che mostra la situazione attuale del DB.
        v0.4.1: Utilizzato pattern Observer per gestire l'aggiornamento lista pazienti.
        v0.4.2: Aggiunto tasto Accogli e gestito il passaggio tra le finestre.
+       v0.4.3: Aggiunto tasto Dimetti ad ogni riga Paziente nella tabella visualizzata.
        v0.5:   TODO Aggiunti tutti i tasti per gestire i Pazienti nella schermata principale.
   -->
 
   <groupId>it.haltardhrim</groupId>
   <artifactId>triage</artifactId>
-  <version>0.4.2</version>
+  <version>0.4.3</version>
   <name>triage</name>
 
   <properties>

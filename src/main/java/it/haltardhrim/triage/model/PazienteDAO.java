@@ -47,7 +47,7 @@ public class PazienteDAO {
 			query.setString    (1, paz.getCodfisc());
 			query.setInt       (2, paz.getPrioritaIniz());
 			query.setInt       (3, paz.getPrioritaIniz());
-			query.setInt       (4, paz.DA_VISITARE);
+			query.setInt       (4, Paziente.DA_VISITARE);
 			query.setString    (5, "PazDAO");
 			query.setTimestamp (6, new Timestamp(System.currentTimeMillis()));
 			query.setString    (7, "");
@@ -93,14 +93,14 @@ public class PazienteDAO {
 		return list;
 	}
 
-	public void updatePazienteStato(Paziente paz) {
+	public void updatePazienteStato(int stato, int id) {
 		try {
 			conn = this.getConnection();
 			query = conn.prepareStatement(UPDATE_PAZIENTE_STATO);
-			query.setInt       (1, paz.getStato());
+			query.setInt       (1, stato);
 			query.setString    (2, "PazDAO");
 			query.setTimestamp (3, new Timestamp(System.currentTimeMillis()));
-			query.setInt       (4, paz.getId());
+			query.setInt       (4, id);
 			query.executeUpdate();
 			query.close();
 			conn.close();
