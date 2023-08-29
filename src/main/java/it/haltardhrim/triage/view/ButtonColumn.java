@@ -10,7 +10,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.AbstractCellEditor;
-import javax.swing.Action;
 import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JTable;
@@ -38,7 +37,7 @@ import javax.swing.table.TableColumnModel;
 public class ButtonColumn extends AbstractCellEditor
 		implements TableCellRenderer, TableCellEditor, ActionListener, MouseListener {
 	private JTable table;
-	private Action action;
+	private ActionListener action;
 	private int mnemonic;
 	private Border originalBorder;
 	private Border focusBorder;
@@ -57,7 +56,7 @@ public class ButtonColumn extends AbstractCellEditor
 	 * @param column the column to which the button renderer/editor is added
 	 * @param action the Action to be invoked when the button is invoked
 	 */
-	public ButtonColumn(JTable table, int column, Action action) {
+	public ButtonColumn(JTable table, int column, ActionListener action) {
 		this.table = table;
 		this.action = action;
 
@@ -180,11 +179,12 @@ public class ButtonColumn extends AbstractCellEditor
 	 */
 	public void actionPerformed(ActionEvent e) {
 		int row = table.convertRowIndexToModel(table.getEditingRow());
+		int col = table.convertColumnIndexToModel(table.getEditingColumn());
 		fireEditingStopped();
 
 		// Invoke the Action
 
-		ActionEvent event = new ActionEvent(table, ActionEvent.ACTION_PERFORMED, "" + row);
+		ActionEvent event = new ActionEvent(table, ActionEvent.ACTION_PERFORMED, "" + row + "," + col);
 		action.actionPerformed(event);
 	}
 

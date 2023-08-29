@@ -17,12 +17,14 @@
        v0.4.1: Utilizzato pattern Observer per gestire l'aggiornamento lista pazienti.
        v0.4.2: Aggiunto tasto Accogli e gestito il passaggio tra le finestre.
        v0.4.3: Aggiunto tasto Dimetti ad ogni riga Paziente nella tabella visualizzata.
-       v0.5:   TODO Aggiunti tutti i tasti per gestire i Pazienti nella schermata principale.
+       v0.4.4: Convertita finestra Accogli in JOptionPane.
+       v0.4.5: Gestione degli eventi centralizzata in un unico metodo per classe.
+  TODO v0.5:   Aggiunti tutti i tasti per gestire i Pazienti nella schermata principale.
   -->
 
   <groupId>it.haltardhrim</groupId>
   <artifactId>triage</artifactId>
-  <version>0.4.3</version>
+  <version>0.4.4</version>
   <name>triage</name>
 
   <properties>

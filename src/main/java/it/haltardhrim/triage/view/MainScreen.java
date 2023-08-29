@@ -5,9 +5,9 @@ import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.AbstractAction;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -15,7 +15,7 @@ import javax.swing.JTable;
 import it.haltardhrim.triage.control.Control;
 
 @SuppressWarnings("serial")
-public class MainScreen extends JFrame {
+public class MainScreen extends JFrame implements ActionListener {
 
 	// Componenti Control
 	Control control;
@@ -26,8 +26,8 @@ public class MainScreen extends JFrame {
 
 	// Componenti Component
 	JTable lista;
+	PazientiTableModel model;
 	ButtonColumn dimetti;
-	JButton aggiorna;
 	JButton accogli;
 
 	public MainScreen(Control control) throws HeadlessException {
@@ -46,44 +46,21 @@ public class MainScreen extends JFrame {
 	}
 
 	public void define() {
-		PazientiTable table = new PazientiTable();
-		lista = new JTable(table);
+		model = new PazientiTableModel();
+		lista = new JTable(model);
 		lista.setFillsViewportHeight(true);
 		lista.setEnabled(true);
 
-		dimetti = new ButtonColumn(lista, PazientiTable.DIMETTI, new AbstractAction() {
-			public void actionPerformed(ActionEvent e) {
-				JTable lista = (JTable) e.getSource();
-				int riga = Integer.valueOf(e.getActionCommand());
-				PazientiTable table = (PazientiTable) lista.getModel();
-				int id = (int) table.getValueAt(riga, PazientiTable.ID);
-
-				control.dimettiClicked(id);
-				fireAggiorna();
-			}
-		});
-
-		aggiorna = new JButton("Aggiorna");
-		aggiorna.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				fireAggiorna();
-			}
-		});
+		dimetti = new ButtonColumn(lista, PazientiTableModel.DIMETTI, this);
 
 		accogli = new JButton("Accogli");
-		accogli.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				setEnabled(false);
-				control.accogliClicked();
-			}
-		});
-	}
+		accogli.addActionListener(this);
+  	}
 
 	public void build() {
 		panelCenter = new JScrollPane(lista);
 
 		panelSouth = new JPanel();
-		panelSouth.add(aggiorna);
 		panelSouth.add(accogli);
 
 		add(panelCenter, BorderLayout.CENTER);
@@ -92,8 +69,57 @@ public class MainScreen extends JFrame {
 		fireAggiorna();
 	}
 
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		Object o = e.getSource();
+		
+		if (o == accogli) {
+			fireAccogli();
+		}
+		else if (o == lista) {
+			int row = Integer.valueOf(e.getActionCommand().split(",",2)[0]);
+			int col = Integer.valueOf(e.getActionCommand().split(",",2)[1]);
+
+			if (col == PazientiTableModel.DIMETTI) {
+				fireDimetti(row);
+			}
+		}
+	}
+
 	public void fireAggiorna() {
-		PazientiTable t = (PazientiTable) lista.getModel();
-		control.aggiornaClicked(t);
+		PazientiTableModel model = (PazientiTableModel) lista.getModel();
+		control.aggiornaClicked(model);
+	}
+
+	public void fireAccogli() {
+		AccogliPane panel = new AccogliPane();
+		int confirm = JOptionPane.showConfirmDialog(
+				this,
+				panel,
+				"Accogli Paziente",
+				JOptionPane.OK_CANCEL_OPTION);
+
+		if (confirm == JOptionPane.OK_OPTION) {
+			control.accogliClicked(
+					panel.codfisc.getText(),
+					panel.priorita.getSelectedIndex(),
+					this);
+		}
+	}
+
+	public void fireDimetti(int row) {
+		int id = (int) model.getValueAt(row, PazientiTableModel.ID);
+
+		int confirm = JOptionPane.showConfirmDialog(
+				lista,
+				"Sicuro di voler dimettere il paziente?",
+				"Dimetti Paziente",
+				JOptionPane.YES_NO_OPTION,
+				JOptionPane.QUESTION_MESSAGE);
+
+		if (confirm == JOptionPane.YES_OPTION) {
+			control.dimettiClicked(id);
+			fireAggiorna();
+		}
 	}
 }

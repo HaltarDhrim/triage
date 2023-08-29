@@ -2,13 +2,12 @@ package it.haltardhrim.triage.view;
 
 import java.util.ArrayList;
 
-import javax.swing.ImageIcon;
 import javax.swing.table.AbstractTableModel;
 
 import it.haltardhrim.triage.model.Paziente;
 
 @SuppressWarnings("serial")
-public class PazientiTable extends AbstractTableModel {
+public class PazientiTableModel extends AbstractTableModel {
 
 	public ArrayList<Paziente> pazienti = new ArrayList<Paziente>();
 	public String[] colonne = { "ID", "Cod.Fisc.", "Priorità", "Stato", "Dimetti" };
